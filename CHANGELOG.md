@@ -3,8 +3,16 @@ All notable changes to this project will be documented in this file, which follo
 on [Keep a CHANGELOG](http://keepachangelog.com/). This project adheres to
 [Semantic Versioning](http://semver.org/).
 
-## [2.0.0] - 2018-11-24
+## [17.0.0] - 2023-05-25
+### Updated
+- Update Wiremock to 2.27.2
+- Update to Java 17
+- Update integration tests to use Wildfly 26.1.2.Final
+- Update Wildfly-Maven-Plugin to 4.0.0.Final
+### Changed
+- Bumped version to 17.0.0 to match Java and Framework versions
 
+## [2.0.0] - 2018-11-24
 ### Updated
 - update wiremock dependency to 2.0.19
 - updated travis to new build processes
