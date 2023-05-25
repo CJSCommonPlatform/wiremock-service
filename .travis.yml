@@ -1,8 +1,8 @@
----
-dist: trusty
+dist: xenial
 language: java
+os: linux
 jdk:
-  - openjdk8
+  - openjdk17
 git:
   depth: 3
 cache:
