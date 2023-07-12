@@ -4,51 +4,43 @@ import static com.github.tomakehurst.wiremock.client.WireMock.reset;
 import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.wireMockConfig;
 import static javax.ws.rs.core.Response.Status.NOT_FOUND;
 import static javax.ws.rs.core.Response.Status.OK;
-import static net.trajano.commons.testing.UtilityClassTestUtil.assertUtilityClassWellDefined;
 import static org.apache.cxf.jaxrs.client.WebClient.create;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static uk.gov.justice.service.wiremock.testutil.InternalEndpointMockUtils.stubPingFor;
 
+import com.github.tomakehurst.wiremock.junit5.WireMockTest;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-import com.github.tomakehurst.wiremock.junit.WireMockRule;
 import org.apache.cxf.jaxrs.client.WebClient;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  * Unit tests for the {@link InternalEndpointMockUtils} class.
  */
+
+@WireMockTest(httpPort = 23263)
 public class InternalEndpointMockUtilsIT {
 
     private static final String SERVICE_NAME = "test-command-api";
 
-    @Rule
-    public WireMockRule wm = new WireMockRule(wireMockConfig());
-
-    @Before
+    @BeforeEach
     public void setUp() {
         reset();
         stubPingFor(SERVICE_NAME);
     }
 
-    @After
+    @AfterEach
     public void tearDown() {
         reset();
     }
 
     private static final String PONG = "pong";
-    private static final String BASE_URL = "http://localhost:8080";
-
-    @Test
-    public void shouldBeWellDefinedUtilityClass() {
-        assertUtilityClassWellDefined(InternalEndpointMockUtils.class);
-    }
+    private static final String BASE_URL = "http://localhost:23263";
 
     @Test
     public void shouldStubPingForGetRequest() {
