@@ -13,29 +13,30 @@ import static org.apache.cxf.jaxrs.client.WebClient.create;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
+import com.github.tomakehurst.wiremock.junit5.WireMockTest;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
 
 import org.hamcrest.CoreMatchers;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  * An example test war to show how to intereact with Jee deployed WireMock server war
  */
+
+@WireMockTest(httpPort = 23262)
 public class WireMockServiceIT {
 
     private static final String RESPONSE = "{\"test\":\"working\"}";
     private static final String PATH = "/test/two";
-    private static final String BASE_URL = "http://localhost:8080";
+    private static final String BASE_URL = "http://localhost:23262";
     private static final String APPLICATION_JSON = "application/json";
     private static final String CONTENT_TYPE = "Content-Type";
 
-    @Before
+    @BeforeEach
     public void setup() {
-
-        configure();
         reset();
         stubFor(get(urlEqualTo(PATH))
                 .willReturn(aResponse()

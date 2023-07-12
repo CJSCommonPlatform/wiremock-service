@@ -3,6 +3,11 @@ All notable changes to this project will be documented in this file, which follo
 on [Keep a CHANGELOG](http://keepachangelog.com/). This project adheres to
 [Semantic Versioning](http://semver.org/).
 
+## [17.0.1] - 2023-07-12
+### Updated
+- Update Wiremock to 3.0.0-beta-10
+- Update junit5
+
 ## [17.0.0] - 2023-05-25
 ### Updated
 - Update Wiremock to 2.27.2
